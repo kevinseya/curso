@@ -1,25 +1,23 @@
 package com.cursoJava.curso.controllers;
-import com.cursoJava.curso.dao.usuarioDao;
+import com.cursoJava.curso.dao.usuarioAdminDao;
 import com.cursoJava.curso.models.Usuario;
 import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import de.mkammerer.argon2.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class UsuarioController {
+public class UsuarioAdminController {
 
     @Autowired
-    private usuarioDao usuarioDao;
+    private usuarioAdminDao usuarioAdminDao;
 
 
     @RequestMapping(value= "api/usuarios", method = RequestMethod.GET)
     public List<Usuario> getUsuarios(){
 
-        return usuarioDao.getUsuarios();
+        return usuarioAdminDao.getUsuarios();
     }
 
 
@@ -30,13 +28,13 @@ public class UsuarioController {
         String hash = argon2.hash(1, 1024, 1,usuario.getPassword());
         usuario.setPassword(hash);
 
-        usuarioDao.registrar(usuario);
+        usuarioAdminDao.registrar(usuario);
     }
 
-    @RequestMapping(value= "api/usuarios/{id}", method = RequestMethod.DELETE)
-    public void eliminarUsuario( @PathVariable Long id){
+    @RequestMapping(value= "api/usuarios/{idusuarioadmin}", method = RequestMethod.DELETE)
+    public void eliminarUsuario( @PathVariable Long idusuarioadmin){
 
-        usuarioDao.eliminar(id);
+        usuarioAdminDao.eliminar(idusuarioadmin);
     }
 
 

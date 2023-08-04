@@ -9,7 +9,7 @@ import java.util.List;
 import de.mkammerer.argon2.*;
 @Repository
 @Transactional
-public class usuarioDaoImp implements usuarioDao{
+public class usuarioAdminDaoImp implements usuarioAdminDao {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -20,13 +20,14 @@ public class usuarioDaoImp implements usuarioDao{
     }
 
     @Override
-    public void eliminar(Long id) {
-        Usuario usuario = entityManager.find(Usuario.class , id);
+    public void eliminar(Long idusuarioadmin) {
+        Usuario usuario = entityManager.find(Usuario.class , idusuarioadmin);
         entityManager.remove(usuario);
     }
 
     @Override
     public void registrar(Usuario usuario) {
+
         entityManager.merge(usuario);
     }
 
@@ -51,12 +52,6 @@ public class usuarioDaoImp implements usuarioDao{
         }
         return null;
 
-         //lo mimso de abajo pero de manera diferente
-        //if (lista.isEmpty()){
-        //    return false;
-        //}else{
-        //    return true;
-        //}
 
 
     }

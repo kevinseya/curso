@@ -5,13 +5,12 @@ import com.cursoJava.curso.models.Usuario;
 
 import java.util.List;
 
-public interface usuarioDao {
+public interface usuarioAdminDao {
     List<Usuario> getUsuarios();
 
-    void eliminar(Long id);
+    void eliminar(Long idusuarioadmin);
 
     void registrar(Usuario usuario);
-
 
     Usuario obtenerUsuarioPorCredenciales(Usuario usuario);
 }

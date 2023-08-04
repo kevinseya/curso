@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Administrador Eventos</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,36 +30,45 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
+        <!-- Barra Lateral -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <!-- viñeta de logo -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="panelAdmin.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Administración <sup>2</sup></div>
             </a>
 
-            <!-- Divider -->
+            <!-- linea de division -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+            <!-- Panel Principal -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="panelAdmin.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Panel Principal</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
 
-            <!-- Nav Item - Tables -->
+            <!-- Barra lateral azul para interactividad con paginas-->
             <li class="nav-item active">
                 <a class="nav-link" href="usuarios.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Usuarios - Clientes</span></a>
+                    <span>Usuarios-Clientes</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="crear_evento.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Crear Evento</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="eventos.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Mis Eventos</span></a>
             </li>
 
             <!-- Divider -->
@@ -79,16 +88,8 @@
             <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
+                <!-- Panel Superior-->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
-
 
 
                     <!-- Topbar Navbar -->
@@ -98,7 +99,7 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
+                        <!-- Informacion usuario Logeado -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,25 +107,21 @@
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
-                            <!-- Dropdown - User Information -->
+                            <!-- Informacion usuario desplegable -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Perfil
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    Ajustes
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Salir
                                 </a>
                             </div>
                         </li>
@@ -132,7 +129,7 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
+                <!-- fin de desplegable-->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -140,10 +137,10 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Gestión de usuarios</h1>
 
-                    <!-- DataTales Example -->
+                    <!-- Tabla de datos -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Listado de Usuarios</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Listado de Usuarios Clientes</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -154,7 +151,7 @@
                                             <th>Nombre</th>
                                             <th>Email</th>
                                             <th>Teléfono</th>
-                                            <th>Acciones</th>
+                                            <!--<th>Acciones</th>-->
                                         </tr>
                                     </thead>
                                    <tbody>
@@ -175,7 +172,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; UCE Tickets 2023</span>
                     </div>
                 </div>
             </footer>
@@ -192,7 +189,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
+    <!-- Pantalla para deslogearse-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -203,10 +200,10 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Haz seleccionado el boton de "Salir", ¿Estás seguro que deseas salir de tu sesión?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="login.html">Salir</a>
                 </div>
             </div>
         </div>

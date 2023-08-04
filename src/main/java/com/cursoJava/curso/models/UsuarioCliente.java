@@ -1,20 +1,14 @@
 package com.cursoJava.curso.models;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
-@Table(name = "usuarioadmin")
-public class Usuario {
-
+@Table(name = "usuariocliente")
+public class UsuarioCliente {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Getter @Setter @Column(name = "idusuarioadmin")
-    private Long idusuarioadmin;
+    @Getter @Setter @Column(name = "idusuariocliente")
+    private long idusuariocliente;
     @Getter@Setter @Column(name = "nombre")
     private String nombre;
     @Getter@Setter @Column(name = "apellido")
@@ -25,6 +19,5 @@ public class Usuario {
     private String telf;
     @Getter@Setter @Column(name = "password")
     private String password;
-
 
 }

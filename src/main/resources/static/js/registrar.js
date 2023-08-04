@@ -4,12 +4,10 @@ $(document).ready(function() {
 });
 
 async function registrarUsuarios(){
-
+//corregir entradas html
     let datos ={};
     datos.nombre = document.getElementById('txtNombre').value;
     datos.apellido = document.getElementById('txtApellido').value;
-    datos.email = document.getElementById('txtEmail').value;
-    datos.nombre = document.getElementById('txtNombre').value;
     datos.email = document.getElementById('txtEmail').value;
     datos.password = document.getElementById('txtPassword').value;
 
