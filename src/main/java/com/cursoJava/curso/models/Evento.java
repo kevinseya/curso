@@ -31,10 +31,10 @@ public class Evento {
     private Double precioticket;
     @Getter@Setter @Column(name = "subgenero")
     private String subgenero;
-
-    @Setter @Getter
-    @Column(name="idusuarioadmin")
+    @Setter @Getter @Column(name="idusuarioadmin")
     private Long idusuarioadmin;
+    @Setter @Getter @Column(name="imagen")
+    private String imagen;
 
 
 }
