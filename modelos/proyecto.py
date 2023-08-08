@@ -62,7 +62,8 @@ for i in range(len(predicciones_asistentes)):
     print(f" Predicción para el evento {i + 1}:")
     print(f" Cantidad de asistentes: {predicciones_asistentes[i]}")
     precio_base = data_prueba[i, 1]
-    incremento_por_asistente = 0.2
+    incremento_por_asistente = 0.2  # En esta línea depende del incremento qu se vaya solicitando mientras más alto
+    # es el incremento mayor será la recomendación del precio de la entrada.
 
     # Cálculo de la recomendación del precio de entrada basado en la cantidad de asistentes
     recomendacion_precio = float(precio_base) + (predicciones_asistentes * incremento_por_asistente)
