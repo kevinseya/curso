@@ -5,7 +5,7 @@ $(document).ready(function() {
     //on ready
 });
 function actualizarEmailUsuario() {
-    document.getElementById('txt-email-usuario').outerHTML = localStorage.email;
+    document.getElementById('txt-email-usuario').innerHTML = localStorage.email;
 }
 
 
@@ -34,12 +34,18 @@ async function registrarEventos(idUsuarioAdmin){
             'Content-Type': 'application/json'
         },
         body:  JSON.stringify(datosEvento)
-    });
+    }).then(response=>{
+        if(response.ok){
+            alert("EVENTO CREADO CON ÉXITO");
+        }else{
+            alert("ERROR AL CREAR EL EVENTO")
+        }
+    })
 
-
-    alert("El EVENTO fue creada EXITOSAMENTE!");
     window.location.href = 'eventos.html';
 }
+
+
 
 
 

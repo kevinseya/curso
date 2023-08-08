@@ -173,6 +173,79 @@
         </div>
         <!-- End of Main Content -->
 
+        <!-- MODAL -->
+
+        <div id="modal-actualizar" class="modal" >
+            <div class="modal-content">
+
+                <h2 class="h4 text-gray-900 mb-4">Actualiza los datos de tu evento</h2>
+                <form id="formularioActualizar">
+
+                    <div class="form-group row">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
+                            <label>Nombre del Evento</label>
+                            <input type="text" class="form-control form-control-user" id="txtNombre1" value=>
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="txtGenero1" >Selecciona</label>
+                            <select name="opcionesGenero" class="form-control"  id="txtGenero1" >
+                                <option value="" selected disabled>Selecciona el género de tu evento:</option>
+                                <option value="Cultural" >Cultural (Conciertos, exposiciones, arte, etc.)</option>
+                                <option value="Académico" >Académico (Conferencias, talleres, etc.)</option>
+                                <option value="Deportivo" >Deportivo(Competencias, torneos, etc.)</option>
+                                <option value="Networking" >Networking(Ferias, encuentros, etc.)</option>
+                            </select >
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción del Evento</label>
+                        <input type="text" class="form-control form-control-user" id="txtDescripcion1">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label># Tickets disponibles</label>
+                            <input type="number" class="form-control form-control-user" id="txtCantBoletosDisponibles1">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Duración</label>
+                            <input type="time" step="1800" class="form-control form-control-user"
+                                   id="txtDuracion1">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Fecha</label>
+                            <input type="date" class="form-control form-control-user"
+                                   id="txtFecha1">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Lugar</label>
+                            <input type="text" class="form-control form-control-user"
+                                   id="txtLugar1">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>$ Precio de Ticket</label>
+                            <input type="number" step="0.01" min="0" class="form-control form-control-user"
+                                   id="txtPrecioTicket1">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Subgénero del Evento </label>
+                            <input type="text" class="form-control form-control-user"
+                                   id="txtSubGenero1">
+                        </div>
+                        <button type="submit" id="guardarCambios" class="btn btn-primary btn-user btn-block">Guardar Cambios</button>
+
+
+
+                </form>
+
+            </div>
+        </div>
+
+
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
@@ -230,6 +303,7 @@
 
 <!-- Page level custom scripts -->
 <script src="js/eventos.js"></script>
+
 
 </body>
 

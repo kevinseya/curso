@@ -30,13 +30,15 @@ async function cargarEventos(){
     for(let evento of eventos){
         //funcionalidad del botonEliminar para eliminar usuarios
         let botonEliminar = '<a href="#" onclick="eliminarEvento(' + evento.idevento + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+        let botonActualizar = '<a href="#" onclick="actualizarEvento('+evento.idevento+')" class="btn btn-info btn-circle btn-sm"><i class="fas fa-check"></i></a>';
+
 
         //se indica en cada apartado de la tabla los diferentes atributos de la clase Cliente que a su vez estan en la BD usuario cliente
 
+
         let eventoHTML = '<tr><td>'+evento.idevento+'</td><td>'+evento.nombre+'</td><td>'+evento.genero+'</td><td>' +
             ''+evento.subgenero+'</td><td>'+evento.cantboletosdisponibles+'</td><td>'+evento.precioticket+'</td><td>'+
-            evento.duracion+'</td><td>'+evento.fecha+'</td><td>'+evento.lugar+'</td><td>'+botonEliminar+'</td>' +
-            '</tr>';
+            evento.duracion+'</td><td>'+evento.fecha+'</td><td>'+evento.lugar+'</td><td><div>'+botonEliminar+' '+botonActualizar+'</div></td></tr>';
         //se llena el listado con cada usuario cliente creado
         listadoEventosHTML += eventoHTML;
     }
@@ -85,3 +87,99 @@ async function eliminarEvento(idevento){
     location.reload();
 
 }
+
+
+
+async function actualizarEvento(idevento){
+
+
+        const modalActualizar = document.getElementById('modal-actualizar');
+        const guardarCambios = document.getElementById("guardarCambios");
+
+
+            modalActualizar.style.display = 'block';
+            obtenerDatos(idevento);
+
+
+            async function obtenerDatos(idevento) {
+                const response = await fetch('api/eventos/' + idevento, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                const datosEvento = await response.json();
+                const formularioActualizar = document.getElementById('formularioActualizar')
+                const formularioNombre = document.getElementById('txtNombre1');
+                const formularioGenero = document.getElementById('txtGenero1');
+                const formularioSubgenero = document.getElementById('txtSubGenero1');
+                const formularioCantBoletos = document.getElementById('txtCantBoletosDisponibles1');
+                const formularioPrecioTicket = document.getElementById('txtPrecioTicket1');
+                const formularioDuracion = document.getElementById('txtDuracion1');
+                const formularioFecha = document.getElementById('txtFecha1');
+                const formularioLugar = document.getElementById('txtLugar1');
+                const formularioDescripcion = document.getElementById('txtDescripcion1');
+
+                formularioNombre.value = datosEvento.nombre;
+                formularioGenero.value = datosEvento.genero;
+                formularioDescripcion.value = datosEvento.descripcion;
+                formularioSubgenero.value = datosEvento.subgenero;
+                formularioCantBoletos.value = datosEvento.cantboletosdisponibles;
+                formularioPrecioTicket.value = datosEvento.precioticket;
+                formularioDuracion.value = datosEvento.duracion;
+                formularioFecha.value = datosEvento.fecha;
+                formularioLugar.value = datosEvento.lugar;
+
+                formularioActualizar.addEventListener('submit', async (event) => {
+
+
+                const nuevoNombre = formularioNombre.value;
+                const nuevoGenero = formularioGenero.value;
+                const nuevaDescripcion = formularioDescripcion.value;
+                const nuevoSubGenero = formularioSubgenero.value;
+                const nuevaCantBoletos = formularioCantBoletos.value;
+                const nuevoPrecioTicket = formularioPrecioTicket.value;
+                const nuevaDuracion = formularioDuracion.value;
+                const nuevaFecha = formularioFecha.value;
+                const nuevoLugar = formularioLugar.value;
+
+
+                    const eventoActualizado = {
+                        nombre : nuevoNombre,
+                        descripcion : nuevaDescripcion,
+                        genero : nuevoGenero,
+                        cantboletosdisponibles : nuevaCantBoletos,
+                        duracion : nuevaDuracion,
+                        fecha : nuevaFecha,
+                        lugar : nuevoLugar,
+                        precioticket : nuevoPrecioTicket,
+                        subgenero : nuevoSubGenero,
+
+                    };
+
+                    const response = await fetch('/api/eventos/' + idevento, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+
+                        },
+                        body: JSON.stringify(eventoActualizado)
+
+                    });
+
+                    if (response.ok) {
+                        alert('EVENTO ACTUALIZADO');
+                        modalActualizar.style.display = 'none';
+                        location.reload();
+
+                    } else {
+                        alert('ERROR AL ACTUALIZAR EL EVENTO');
+                    }
+
+                });
+
+            }
+
+}
+

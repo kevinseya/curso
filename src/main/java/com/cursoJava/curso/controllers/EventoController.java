@@ -65,13 +65,22 @@ public class EventoController {
             return new ArrayList<>();
         }
 
-        return eventoDao.getEventos();
+        return eventoDao.listarEventos();
     }
 
     @RequestMapping(value= "api/eventos/{idevento}", method = RequestMethod.DELETE)
     public void eliminarEvento( @PathVariable Long idevento){
 
         eventoDao.eliminarEvento(idevento);
+    }
+    @RequestMapping(value= "api/eventos/{idevento}", method = RequestMethod.GET)
+    public ResponseEntity<Evento>obtenerEvento(@PathVariable long idevento){
+        Evento evento = eventoDao.encontrarEvento(idevento);
+        if (evento != null){
+            return ResponseEntity.ok(evento);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 

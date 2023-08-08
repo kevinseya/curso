@@ -7,6 +7,7 @@ import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,7 @@ public class eventoDaoImp implements eventoDao{
     EntityManager entityManager;
 
     @Override
-    public List<Evento> getEventos() {
+    public List<Evento> listarEventos() {
 
         String query = "FROM Evento";
         return entityManager.createQuery(query).getResultList();
@@ -37,6 +38,11 @@ public class eventoDaoImp implements eventoDao{
     public void eliminarEvento(long idevento) {
         Evento evento = entityManager.find(Evento.class , idevento);
         entityManager.remove(evento);
+    }
+
+    @Override
+    public Evento encontrarEvento(long idevento){
+        return entityManager.find(Evento.class, idevento);
     }
 
 

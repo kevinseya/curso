@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface eventoDao {
 
-    List<Evento> getEventos();
+    List<Evento> listarEventos();
     void registrarEvento(Evento evento);
     void eliminarEvento(long idevento);
-
+    Evento encontrarEvento(long idevento);
 
 
 
