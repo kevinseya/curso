@@ -46,24 +46,33 @@ def modeloPrediccion(datosPrediccion):
 
 #Aquí ingresarían los datos del usuario a predecir que seran captados por medio de una api al servidor de la logica de negocio
  data_prueba = pd.DataFrame({
-        'genero': ['academico'],
-        'duracion': [3],
-        'diaSemana': [6]
+        'genero': [''],
+        'duracion': [0],
+        'diaSemana': [0]
         # Evento académico el día 6 (sábado) con duración de 3 horas
  })
 #GENERAMOS LOS VALORES QUE TOMAMOS DEL SISTEMA Y LOS NORMALIZAMOS
- #genero = datosPrediccion['genero']
- #duracion = datosPrediccion['duracion']
- #diaSemana = datosPrediccion['diaSemana']
+#tomamos de datosPrediccion que estamos generando la variable a traves
+#del response.JSON, los valores genero, duracion y diaSemana
+ genero = datosPrediccion['genero']
+ duracion = datosPrediccion['duracion']
+ diaSemana = datosPrediccion['diaSemana']
+#Generamos el data frame que va ingresar al modelo
+ data_prueba_sistema = pd.DataFrame({
+        'genero': [genero],
+        'duracion': [duracion],
+        'diaSemana': [diaSemana]
+ })
+#Normalizacion de datos: genero
+ data_prueba['genero'] = data_prueba_sistema['genero'].map({'Cultural':0, 'Académico':1, 'Deportivo':2, 'Networking':3})
+#Normalizacion de datos día de la semana de acuerdo a la fecha
+ data_prueba['diaSemana'] = pd.to_datetime(data_prueba_sistema['diaSemana']).dt.dayofweek+1
+#Normalizacion de la hora 1:30 a 1.5 o 1 a 1
+ data_prueba['duracion'] = data_prueba_sistema['duracion'].apply(transformar_duracion)
 
- #data_prueba_sistema = pd.DataFrame({
- #       'genero': genero,
- #       'duracion': duracion,
- #       'diaSemana': diaSemana
- #})
 
-#se procede a codificar los datos de ingreso, en este caso el genero del evento que se va a predecir
- data_prueba['genero']= data_prueba['genero'].map({'cultural':0, 'academico':1, 'deportivo':2, 'networking':3})
+ #se procede a codificar los datos de ingreso, en este caso el genero del evento que se va a predecir
+ #ata_prueba_sistema['genero']= data_prueba['genero'].map({'cultural':0, 'academico':1, 'deportivo':2, 'networking':3})
 
 
 #se realiza la predicción con el modelo del arbol que previamente fue entrenado con salida de la predicción de asistentes
@@ -75,7 +84,20 @@ def modeloPrediccion(datosPrediccion):
  prediccion_precio = modelo_arbol_precio.predict(data_prueba)
 
 #Impresion final de los resultados arrojados por el modelo de predicción de árboles de decisión
+ print("prediccion asistentes: ", prediccion_asistentes_redondeada)
+ print("prediccion precioTicket: ", prediccion_precio)
+#en formato JSON para enviar al front a través de JavaScript
+ resultados ={
+  "prediccion_asistentes": prediccion_asistentes_redondeada.tolist(),
+  "prediccion_precio": float(prediccion_precio)
+ }
+ return resultados
 
 
- print("PRediccion Asistentes:", prediccion_asistentes_redondeada)
- print("prediccion precio Ticket", prediccion_precio)
+#FUNCION PARA TRANSFORMAR DATOS DE DURACION INGRESADOS POR EL USUARIOCLIENTE
+def transformar_duracion(duracion_str):
+  partes = duracion_str.split(':')
+  horas = int(partes[0])
+  minutos = int(partes[1])
+  duracion_decimal = horas+minutos / 60.0
+  return duracion_decimal

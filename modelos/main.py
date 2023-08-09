@@ -10,14 +10,10 @@ def recibirdatos():
 
         datosPrediccion = request.json
         resultado_modelo = modeloPrediccion(datosPrediccion)
-        respuesta = {
-            "valores de SISTEMA": datosPrediccion
-        }
-        print(respuesta)
-        return jsonify({'Valores de sistema': datosPrediccion})
 
 
-
+        return jsonify(resultado_modelo)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
