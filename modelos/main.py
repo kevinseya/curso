@@ -1,16 +1,22 @@
 from flask import Flask, request, jsonify
 from modeloPrediccion import modeloPrediccion
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
-@app.post('api/modelo')
-def api_modelo():
-    try:
-        datosCaptados = request.json
-        resultado = modeloPrediccion(datosCaptados)
-        return jsonify({'resultado':resultado})
-    except Exception as e:
-        return jsonify({'error':str(e)})
+@app.route('/api/modeloPrediccion', methods=['POST'])
+def recibirdatos():
+
+        datosPrediccion = request.json
+        resultado_modelo = modeloPrediccion(datosPrediccion)
+        respuesta = {
+            "valores de SISTEMA": datosPrediccion
+        }
+        print(respuesta)
+        return jsonify({'Valores de sistema': datosPrediccion})
+
+
 
 
 if __name__ == '__main__':
