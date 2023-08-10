@@ -78,7 +78,7 @@ def modeloPrediccion(datosPrediccion):
  prediccion_asistentes = modelo_arbol_asistentes.predict(data_prueba)
 #aqui se redondea si en el caso de que tuvieramos valores decimales menores a 0.5 se queda con el numero entero
 # y si son mayores a 0.5 se sube al siguiente numero entero
- prediccion_asistentes_redondeada = np.array([math.ceil(pred) if pred - int(pred) > 0.5 else int(pred) for pred in prediccion_asistentes])
+ prediccion_asistentes_redondeada = int(np.array([math.ceil(pred) if pred - int(pred) > 0.5 else int(pred) for pred in prediccion_asistentes]))
 #se realiza la predicción con el modelo del arbol que previamente fue entrenado con salida de la predicción del precio del ticket
  prediccion_precio = modelo_arbol_precio.predict(data_prueba)
 
@@ -87,7 +87,7 @@ def modeloPrediccion(datosPrediccion):
  print("prediccion precioTicket: ", prediccion_precio)
 #en formato JSON para enviar al front a través de JavaScript
  resultados ={
-  "prediccion_asistentes": prediccion_asistentes_redondeada.tolist(),
+  "prediccion_asistentes": prediccion_asistentes_redondeada,
   "prediccion_precio": float(prediccion_precio)
  }
  return resultados
