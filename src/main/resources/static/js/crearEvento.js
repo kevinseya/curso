@@ -2,6 +2,30 @@
 $(document).ready(function() {
     actualizarEmailUsuario();
 
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const prediccionAsistentes = urlParams.get('prediccionAsistentes');
+    const prediccionPrecioTicket = urlParams.get('prediccionPrecio');
+    const prediccionFecha = urlParams.get('fechaPrediccion');
+    const prediccionGenero = urlParams.get('generoPrediccion');
+    const prediccionDuracion = urlParams.get('duracionPrediccion');
+
+
+    const prediccionAsistenteInput = document.getElementById('txtCantBoletosDisponibles');
+    const prediccionTicketInput = document.getElementById('txtPrecioTicket');
+    const prediccionGeneroInput = document.getElementById('txtGenero');
+    const prediccionFechaInput = document.getElementById('txtFecha');
+    const prediccionDuracionInput = document.getElementById('txtDuracion')
+
+    if(prediccionAsistentes !== null && prediccionPrecioTicket != null) {
+        prediccionAsistenteInput.value = prediccionAsistentes;
+        prediccionTicketInput.value = prediccionPrecioTicket;
+        prediccionGeneroInput.value = prediccionGenero;
+        prediccionFechaInput.value = prediccionFecha;
+        prediccionDuracionInput.value = prediccionDuracion;
+    }
+
+
     //on ready
 });
 function actualizarEmailUsuario() {
@@ -9,10 +33,15 @@ function actualizarEmailUsuario() {
 }
 
 
+
 async function registrarEventos(idUsuarioAdmin){
+
+
 
   //Aqui se capta los datos ingresados en el front para el evento
     let datosEvento ={};
+
+
 
     datosEvento.nombre = document.getElementById('txtNombre').value;
     datosEvento.descripcion = document.getElementById('txtDescripcion').value;
