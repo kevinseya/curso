@@ -22,6 +22,7 @@ public class EventoController {
     @PersistenceContext
     EntityManager entityManager;
 
+
     @RequestMapping(value= "api/eventos/{idevento}", method = RequestMethod.PUT)
     public void editarEvento( @RequestBody Evento eventoActualizado, @PathVariable Long idevento){
 
