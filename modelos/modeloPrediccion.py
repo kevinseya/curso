@@ -1,6 +1,7 @@
 import math
 import numpy as np
 import pandas as pd
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.tree import DecisionTreeRegressor
 
 
@@ -85,12 +86,28 @@ def modeloPrediccion(datosPrediccion):
 #Impresion final de los resultados arrojados por el modelo de predicción de árboles de decisión
  print("prediccion asistentes: ", prediccion_asistentes_redondeada)
  print("prediccion precioTicket: ", prediccion_precio)
+
+ #CALCULO DE PRECISION MAE(Error absoluto medio error absoluto promedio entre predicciones y valores reales
+ errores_absolutos = [abs(prediccion_asistentes - valor_real) for valor_real in etiquetas_asistentes]
+ mae_asistentes = sum(errores_absolutos) / len(errores_absolutos)
+ print("MAE Asistentes:", mae_asistentes)
+
+ errores_absolutos2 = [abs(prediccion_precio - valor_real) for valor_real in etiquetas_precio]
+ mae_precio = sum(errores_absolutos2) / len(errores_absolutos2)
+ print("MAE Precio:", mae_precio)
+
+
 #en formato JSON para enviar al front a través de JavaScript
  resultados ={
   "prediccion_asistentes": prediccion_asistentes_redondeada,
   "prediccion_precio": float(prediccion_precio)
  }
  return resultados
+
+
+
+
+
 
 
 #FUNCION PARA TRANSFORMAR DATOS DE DURACION INGRESADOS POR EL USUARIOCLIENTE
