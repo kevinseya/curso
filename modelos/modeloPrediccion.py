@@ -13,7 +13,7 @@ def modeloPrediccion(datosPrediccion):
 # La primera columna representa el género del evento, la segunda el número de asistentes,
 # tercera el precio del ticket, el cuarto dia de la semana y el quinto la duración del evento
 # para el día del evento se normalizó (1 para lunes, 2 para martes, etc.), y la quinta la duración del evento (en horas)
- dataEntrenamiento = 'dataSetEntrenamiento.csv'
+ dataEntrenamiento = 'nuevos_datos_generados.csv'
 #columnas de la encuesta
  columnas = ['genero','asistentes','precioTicket','diaSemana','duracion']
 #condiciones para leer el documento .csv

@@ -24,4 +24,4 @@ for _ in range(num_samples):
 generated_df = pd.concat(generated_data, ignore_index=True)
 
 # Guardar los nuevos datos en un archivo CSV
-generated_df.to_csv('nuevos_datos_generados10000.csv', index=False, sep=';')
+generated_df.to_csv('nuevos_datos_generados5000.csv', index=False, sep=';')

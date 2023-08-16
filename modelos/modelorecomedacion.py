@@ -1,8 +1,11 @@
 import pandas as pd
-#from sklearn.feature_extraction.text import TfidfVectorizer
-#from sklearn.metrics.pairwise import linear_kernel
+import requests
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
 
-# Crear un DataFrame con títulos de eventos y sus etiquetas
+
+#Crear un DataFrame con títulos de eventos y sus etiquetas
+"""
 data = {
     'titulo_evento': [
         'Conferencia de Ciencia de Datos',
@@ -77,7 +80,7 @@ data = {
         'Partido de Tenis con Raquetas Conectadas'
     ],
     'etiquetas': [
-        'ciencia de datos|analítica|machine learning|IA',
+        'ciencia de datos|nalítica|machine learning|IA',
         'desarrollo web|front-end|back-end|diseño',
         'tecnología|innovación|startups|robótica',
         'marketing digital|publicidad en línea|SEO',
@@ -149,48 +152,73 @@ data = {
         'tenis|raquetas conectadas|tecnología en deporte|partido interactivo|juego digital'
     ]
 }
+"""
+def modeloRecomendacion(nombre_evento):
+#Captura de datos del backend para analizar
 
-df_eventos = pd.DataFrame(data)
+ url = "http://localhost:8080/api/eventosModelo"
+ response = requests.get(url)
+
+ if response.status_code == 200:
+     eventos_data = response.json()
+
+     data = {'titulo_evento': [], 'etiquetas': []}
+
+     for evento in eventos_data:
+        titulo = evento['nombre']
+        etiqueta = evento['etiqueta']
+
+        data['titulo_evento'].append(titulo)
+        data['etiquetas'].append(etiqueta)
+
+
+
+
+
+ df_eventos = pd.DataFrame(data)
 
 # Imprime el DataFrame de eventos
-print("DataFrame de Eventos:")
-print(df_eventos)
-print()
+ print("DataFrame de Eventos:")
+ print(df_eventos)
+ print()
 
-from sklearn.feature_extraction.text import TfidfVectorizer
-tfidf = TfidfVectorizer(stop_words='english')
+ from sklearn.feature_extraction.text import TfidfVectorizer
+ tfidf = TfidfVectorizer(stop_words='english')
 
 # Divide las etiquetas en listas individuales y crea una lista de etiquetas únicas
-etiquetas_split = df_eventos['etiquetas'].apply(lambda x: x.split('|'))
-etiquetas_unique = list(set([item for sublist in etiquetas_split for item in sublist]))
+ etiquetas_split = df_eventos['etiquetas'].apply(lambda x: x.split(','))
+ etiquetas_unique = list(set([item for sublist in etiquetas_split for item in sublist]))
 
 # Reemplaza el separador '|' con un espacio en blanco para cada fila en las etiquetas
-df_eventos['etiquetas'] = df_eventos['etiquetas'].apply(lambda x: ' '.join(x.split('|')))
+ df_eventos['etiquetas'] = df_eventos['etiquetas'].apply(lambda x: ' '.join(x.split(',')))
 
 # Crea la matriz TF-IDF a partir de las etiquetas
-tfidf_matrix = tfidf.fit_transform(df_eventos['etiquetas'])
+ tfidf_matrix = tfidf.fit_transform(df_eventos['etiquetas'])
 
 # Imprime la longitud del vocabulario TF-IDF y la forma de la matriz
-print("Longitud del vocabulario TF-IDF:", len(tfidf.vocabulary_))
-print("Forma de la matriz TF-IDF:", tfidf_matrix.shape)
+#Transformar nombre del evento en vector, lanza a funcion de similitud de cosenos
+ print("Longitud del vocabulario TF-IDF:", len(tfidf.vocabulary_))
+ print("Forma de la matriz TF-IDF:", tfidf_matrix.shape)
 
-from sklearn.metrics.pairwise import linear_kernel
-cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+#similitudes de cosenos
+ from sklearn.metrics.pairwise import linear_kernel
+ cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
 
 # Crea un índice con los títulos de eventos para la búsqueda rápida
-indices = pd.Series(df_eventos.index, index=df_eventos['titulo_evento']).drop_duplicates()
+ indices = pd.Series(df_eventos.index, index=df_eventos['titulo_evento']).drop_duplicates()
 
-def get_recommendations(title, cosine_sim=cosine_sim):
-    idx = indices[title]
-    sim_scores = list(enumerate(cosine_sim[idx]))
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:5]
-    event_indices = [i[0] for i in sim_scores]
-    return df_eventos['titulo_evento'].iloc[event_indices]
+ def get_recommendations(title, cosine_sim=cosine_sim):
+     idx = indices[title]
+     sim_scores = list(enumerate(cosine_sim[idx]))
+     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+     sim_scores = sim_scores[1:5]
+     event_indices = [i[0] for i in sim_scores]
+     return df_eventos['titulo_evento'].iloc[event_indices]
 
 # Título del evento seleccionado (puede cambiarse por otro título del DataFrame)
-titulo_evento = str(df_eventos.iloc[67]['titulo_evento'])
+ titulo_evento = str(nombre_evento)
 
 # Imprime el evento seleccionado y sus recomendaciones
-print("Tu seleccionaste:", titulo_evento, "y tus recomendaciones son:")
-print(get_recommendations(titulo_evento))
+ print("Tu seleccionaste:", titulo_evento, "y tus recomendaciones son:")
+ print(get_recommendations(titulo_evento))
+ return (get_recommendations(titulo_evento).tolist())

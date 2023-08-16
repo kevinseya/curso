@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 from modeloPrediccion import modeloPrediccion
+from modelorecomedacion import modeloRecomendacion
 from flask_cors import CORS
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -13,6 +15,16 @@ def recibirdatos():
 
 
         return jsonify(resultado_modelo)
+
+
+@app.route('/recibir-nombre-evento', methods=['POST'])
+def recibir_nombre_evento():
+    nombre_evento = request.json.get('nombre_evento')
+    print(nombre_evento)
+    resultados_modelo = modeloRecomendacion(nombre_evento)
+    return jsonify(resultados_modelo)
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
