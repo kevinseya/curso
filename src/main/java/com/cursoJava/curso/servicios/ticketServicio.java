@@ -1,10 +1,16 @@
 package com.cursoJava.curso.servicios;
 
+import com.cursoJava.curso.models.Evento;
 import com.cursoJava.curso.models.Ticket;
+import jdk.jfr.Event;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 public interface ticketServicio {
 
-    void registrarNuevoTicket (Ticket ticket);
-    Ticket obtenerDetallesTicket (Ticket ticket);
-    void actualizarDisponibilidadTicket (Ticket ticketActualizado, long idticket, int nuevaDisponibilidad );
+    Optional<Ticket> obtenerDetallesTicket (Long id);
+    List<Ticket> encontrarPorEvento(long idevento);
+    boolean ComprarBoletos(long idticket, long idevento, long idusuariocliente, int cantidad, double costototal, LocalDate fecha, String formaPago);
 }

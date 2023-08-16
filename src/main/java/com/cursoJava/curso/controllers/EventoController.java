@@ -38,10 +38,10 @@ public class EventoController {
             eventoExistente.setCantboletosdisponibles(eventoActualizado.getCantboletosdisponibles());
             eventoExistente.setFecha(eventoActualizado.getFecha());
             eventoExistente.setLugar(eventoActualizado.getLugar());
-            eventoExistente.setSubgenero(eventoActualizado.getSubgenero());
+            eventoExistente.setEtiqueta(eventoActualizado.getEtiqueta());
             eventoExistente.setPrecioticket(eventoActualizado.getPrecioticket());
             eventoExistente.setGenero(eventoActualizado.getGenero());
-            eventoExistente.setImagen(eventoActualizado.getImagen());
+
             eventoDao.registrarEvento(eventoExistente);
         }
 
@@ -66,7 +66,7 @@ public class EventoController {
             return new ArrayList<>();
         }
 
-        return eventoDao.listarEventos();
+        return eventoDao.listarEventosporId(Long.parseLong(id));
     }
 
     @RequestMapping(value= "api/eventos/{idevento}", method = RequestMethod.DELETE)
@@ -84,11 +84,18 @@ public class EventoController {
         }
     }
 
+    @RequestMapping(value= "api/eventosClienteLogin/{genero}", method = RequestMethod.GET)
+    public List<Evento> getEventosClientes(@PathVariable String genero){
+        return eventoDao.listarEventos(genero);
+    }
 
-
-
-
-
-
+    @RequestMapping(value="api/eventosBusqueda/{nombre}", method = RequestMethod.GET)
+    public List<Evento> getBusquedaEventoPorNombre(@PathVariable String nombre){
+        return eventoDao.buscarEventoPorNombre(nombre);
+    }
+    @RequestMapping(value= "api/eventosModelo", method = RequestMethod.GET)
+    public List<Evento> getEventos() {
+        return eventoDao.getEventos();
+    }
 
 }

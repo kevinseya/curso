@@ -8,6 +8,10 @@ $(document).ready(function() {
   actualizarEmailUsuario();
 });
 //funcion para actualizar nombre admin logeado
+
+function logout(){
+    localStorage.clear();
+}
 function actualizarEmailUsuario(){
     document.getElementById('txt-email-usuario').outerHTML = localStorage.email;
 }

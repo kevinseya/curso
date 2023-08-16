@@ -2490,8 +2490,8 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #fff;
-  background-color: #36b9cc;
-  border-color: #36b9cc;
+  background-color: #e7a90e;
+  border-color: #ef741e;
 }
 
 .btn-info:hover {
@@ -6483,7 +6483,7 @@ button.bg-warning:focus {
 }
 
 .bg-danger {
-  background-color: #e74a3b !important;
+  background-color: #ef741e !important;
 }
 
 a.bg-danger:hover, a.bg-danger:focus,
@@ -7547,6 +7547,66 @@ button.bg-dark:focus {
   right: 0;
   left: 0;
   z-index: 1030;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  max-width: 600px; /* Ajusta el ancho máximo de la barra de búsqueda */
+  margin: 0 auto; /* Centrar horizontalmente */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  padding: 5px;
+}
+
+.search-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.category-dropdown {
+  position: relative;
+  margin-left: 10px;
+}
+
+.category-button {
+  background-color: #ccc;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.category-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  z-index: 1;
+}
+
+.category-list.show {
+  display: block;
+}
+
+.category-item {
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
 .fixed-bottom {
@@ -10030,8 +10090,10 @@ a:focus {
 }
 
 .text-gray-400 {
-  color: #d1d3e2 !important;
+  color: #a4a5ad !important;
 }
+
+
 
 .text-gray-500 {
   color: #b7b9cc !important;
@@ -10886,6 +10948,15 @@ a:focus {
   background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
   background-position: center;
   background-size: cover;
+}
+
+.background-container {
+  background-image: url("static/img/UCE.jpg");
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 100px; /* Ajusta esto según tus necesidades */
+  color: white; /* Color del texto */
 }
 
 .bg-register-image {

@@ -7,10 +7,15 @@ import java.util.List;
 
 public interface eventoDao {
 
-    List<Evento> listarEventos();
+    List<Evento>listarEventos(String genero);
+    List<Evento> listarEventosPorGenero(String genero);
+    List<Evento> listarEventosporId(Long idusuarioadmin);
     void registrarEvento(Evento evento);
     void eliminarEvento(long idevento);
     Evento encontrarEvento(long idevento);
+    List<Evento> buscarEventoPorNombre(String nombre);
+    List<Evento> getEventos();
+
 
 
 

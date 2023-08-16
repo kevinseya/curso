@@ -27,7 +27,7 @@ async function iniciarSesionCliente(){
         localStorage.token = respuesta;
         localStorage.email = datosCliente.email;
 
-        window.location.href = 'Eventos.html'
+        window.location.href = 'index.html'
     }else{
         alert("las credenciales son incorrectas. Intente nuevamente")
     }

@@ -25,7 +25,7 @@ public class AutenticacionControllerCliente {
 
             String tokenJwtCliente = jwtUtil.create(String.valueOf(usuarioLogueadoCliente.getIdusuariocliente()), usuarioLogueadoCliente.getEmail());
 
-            return tokenJwtCliente;
+            return tokenJwtCliente+";"+usuarioLogueadoCliente.getIdusuariocliente();
         }
         return "FAIL";
     }

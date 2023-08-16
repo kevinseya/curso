@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "usuarioadmin")
+@Table(name = "ticket")
 public class Ticket {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -17,9 +17,9 @@ public class Ticket {
     private int disponibilidad;
     @Getter @Setter
     @Column(name = "precioticket")
-    private float precioticket;
+    private Double precioticket;
     @Getter @Setter
     @Column(name = "idevento")
-    private int idevento;
+    private long idevento;
 
 }

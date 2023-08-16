@@ -31,14 +31,14 @@ async function cargarEventos(){
         //funcionalidad del botonEliminar para eliminar usuarios
         let botonEliminar = '<a href="#" onclick="eliminarEvento(' + evento.idevento + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
         let botonActualizar = '<a href="#" onclick="actualizarEvento('+evento.idevento+')" class="btn btn-info btn-circle btn-sm"><i class="fas fa-check"></i></a>';
-
+        let botonGenerarTicket = '<a href="#" onclick="generarTicket('+evento.idevento+','+evento.cantboletosdisponibles+','+evento.precioticket+')" class="btn btn-info ">Generar Ticket<i class="fas fa-check"></i></a>';
 
         //se indica en cada apartado de la tabla los diferentes atributos de la clase Cliente que a su vez estan en la BD usuario cliente
 
 
         let eventoHTML = '<tr><td>'+evento.idevento+'</td><td>'+evento.nombre+'</td><td>'+evento.genero+'</td><td>' +
             ''+evento.subgenero+'</td><td>'+evento.cantboletosdisponibles+'</td><td>'+evento.precioticket+'</td><td>'+
-            evento.duracion+'</td><td>'+evento.fecha+'</td><td>'+evento.lugar+'</td><td><div>'+botonEliminar+' '+botonActualizar+'</div></td></tr>';
+            evento.duracion+'</td><td>'+evento.fecha+'</td><td>'+evento.lugar+'</td><td><div>'+botonEliminar+' '+botonActualizar+''+botonGenerarTicket+'</div></td></tr>';
         //se llena el listado con cada usuario cliente creado
         listadoEventosHTML += eventoHTML;
     }
@@ -71,6 +71,11 @@ function getHeaders() {
 
 }
  */
+function logout(){
+    localStorage.clear();
+}
+
+
 
 
 //la función de eliminar usuarios clientes
@@ -88,7 +93,35 @@ async function eliminarEvento(idevento){
 
 }
 
+async function generarTicket(idevento, cantboletosdisponibles, precioticket) {
+    if (!confirm("¿Desea generar los ticket's de este evento?")) {
+        return;
+    }
 
+    const ticket = {
+        idevento: idevento,
+        disponibilidad: cantboletosdisponibles,
+        precioticket: precioticket
+    };
+
+    try {
+        const response = await fetch('api/registroTickets', {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify(ticket) // Incluir el cuerpo de la solicitud aquí
+        });
+
+        if (response.ok) {
+            // Realizar acciones adicionales después de generar el ticket
+            alert("Ticket Registrado!")
+            location.reload(); // Recargar la página después de generar el ticket
+        } else {
+            console.error('Error al generar el ticket:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error al generar el ticket:', error);
+    }
+}
 
 async function actualizarEvento(idevento){
 
