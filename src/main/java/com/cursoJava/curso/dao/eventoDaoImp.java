@@ -2,13 +2,9 @@ package com.cursoJava.curso.dao;
 
 
 import com.cursoJava.curso.models.Evento;
-import com.cursoJava.curso.models.UsuarioCliente;
-import de.mkammerer.argon2.Argon2;
-import de.mkammerer.argon2.Argon2Factory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,7 +44,6 @@ public class eventoDaoImp implements eventoDao{
         entityManager.merge(evento);
 
     }
-
 
     @Override
     public void eliminarEvento(long idevento) {

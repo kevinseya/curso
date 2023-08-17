@@ -32,9 +32,8 @@
             max-width: 600px; /* Ajusta el ancho máximo de la barra de búsqueda */
             margin: 0 auto; /* Centrar horizontalmente */
             padding: 10px;
-            border: 1px solid #ffffff;
+            border: 1px solid #ef741e;
             border-radius: 20px;
-            z-index: 1;
         }
 
         .search-input {
@@ -80,7 +79,16 @@
         .colortexto-amarillo{
             color: #ffffff
         }
-
+        .background-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Ajusta la altura según tus necesidades */
+            background-image: url('img/fondo.png'); /* Cambia 'ruta-de-tu-imagen.jpg' por la ruta de tu imagen de fondo */
+            background-size: cover;
+            opacity: 0.7;
+            background-position: center;
+            z-index: -1;
+        }
         .colortexto-naranja{
             color: #ef741e
         }
@@ -108,7 +116,6 @@
             background-size: cover;
             background-position: center;
 
-
         }
 
         /* Estilos para el degradado oscuro */
@@ -119,7 +126,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)); /* Ajusta los valores RGBA según el grado de oscurecimiento */
-           }
+        }
 
         /* Estilos para el contenido encima de la imagen */
 
@@ -127,16 +134,7 @@
             margin-top: 60px; /* Ajusta según la altura de la barra de navegación */
             padding: 20px;
         }
-        .search-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, 50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 1;
-        }
+
         .fixed-nav {
             position: fixed;
             top: 0;
@@ -160,7 +158,7 @@
             text-align: center;
         }
 
-        .category-container {
+        .category-container2 {
             margin-top: 20px;
             display: flex;
             justify-content: space-between;
@@ -171,7 +169,7 @@
         }
 
         /* Estilos para los eventos */
-        .event-container {
+        .event-container2 {
             flex-basis: calc(50% - 20px);
             border: 1px solid #f69f16;
             padding: 20px;
@@ -210,9 +208,10 @@
             text-align: center;
             transform: translateY(-10px);
         }
-        .image-container-img {
-            width: 100%;
-            height: 100%;
+        .image-container-img2 {
+            max-width: 100%;
+            width: 10px;
+            height: auto;
             object-fit: cover; /* Ajusta la imagen para llenar el contenedor sin distorsión */
         }
         .event-name {
@@ -252,33 +251,93 @@
             color: #666; /* Cambia el color según tu diseño */
         }
 
-        .footer-rights {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #ddd; /* Cambia el color de fondo según tu diseño */
-        }
-        .footer-rights {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #ddd; /* Cambia el color de fondo según tu diseño */
-            color: #666; /* Cambia el color del texto según tu diseño */
-            font-size: 14px; /* Cambia el tamaño de fuente según tu diseño */
+        .person-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
         }
 
-        .btn-compra {
-            color: #fff;
-            background-color: #e7a90e;
-            border-color: #ef741e;
+        .person {
+            flex-basis: calc(25% - 20px);
+            border: 1px solid #f69f16;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            margin-bottom: 20px;
         }
+        .person:hover{
+            transform: translateY(-5px);
+        }
+
+        .person-image {
+            width: auto;
+            height: auto;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+        }
+
+        .person-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .person-details {
+            margin: 0;
+        }
+
+        .person-details h2 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .person-details p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #666;
+        }
+        .contact-container {
+            background-color: #f9f9f9;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .contact-container p {
+            font-size: 1rem;
+            color: #666;
+            margin: 10px 0;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-container img {
+            max-width: 200px; /* Ajusta el tamaño del logo */
+        }
+
+        .logo-container p {
+            font-size: 1rem;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        /* Resto de los estilos (incluyendo estilos para las personas y el contenedor de contacto) */
+
+
     </style>
 
-    <script>
-        // JavaScript para mostrar/ocultar la lista de categorías
-        function toggleCategoryList() {
-            var categoryList = document.querySelector('.category-list');
-            categoryList.classList.toggle('show');
-        }
-    </script>
+
 
 
 </head>
@@ -289,12 +348,10 @@
             <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column ">
+
             <!-- Main Content -->
 
         <header class="fixed-header" >
-
-
                 <!-- Panel Superior-->
                 <nav class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow">
 
@@ -353,9 +410,8 @@
                         <a class="nav-link h4" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link h4" href="Nosotros.html">Nosotros</a>
+                        <a class="nav-link h4" href="#">Nosotros</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link h4" href="https://github.com/kevinseya/uceTickets.git">Github</a>
                     </li>
@@ -365,7 +421,6 @@
                     <li class="nav-item">
                         <a class="nav-link h4" href="registrarCliente.html">Registro</a>
                     </li>
-
 
                 </ul>
             </nav>
@@ -377,115 +432,102 @@
 
 
 
+
             <div class="card-body p-2 ">
                 <!-- Nested Row within Card Body -->
 
-                <!-- Modal -->
-                <div id="myModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="cerrarModal()">&times;</span>
-                        <h2>Generar Ticket</h2>
-                        <form id="ticketForm">
-                            <label for="cantidadBoletos">Cantidad de Boletos:</label>
-                            <input type="number" id="cantidadBoletos" name="cantidadBoletos" required>
-
-                            <label for="formaPago">Forma de Pago:</label>
-                            <input type="text" id="formaPago" name="formaPago" required>
-
-                            <button type="submit" class="btn btn-primary">Generar</button>
-                        </form>
-                    </div>
+                <div class="logo-container">
+                    <h1 class="text-gray-800 text-center">Nosotros</h1>
+                    <img src="img/Logo.png" width="1210" height="110"alt="Logo">
+                    <h4>Motívate, mentalízate y sueña divirtiéndote con UCE Ticket</h4>
+                    <p>Somos un equipo entregado, entusiasta y comprometido, unido por un propósito; elevar nuestra aplicación a un nivel de excelencia en su categoría. Mediante investigaciones continuas y una proyección evolutiva constante. Aspiramos a perfeccionar continuamente UCE Ticket a lo largo del tiempo, estableciendo nuevos estándares de calidad y funcionalidad.</p>
                 </div>
 
 
-
-
-                <div class="background-container text-center  ">
-                    <div class="overlay p-5 " >
-
-
-                        <h1 class="h1 mb-3 colortexto-amarillo ">Disfruta tu Evento Artístico</h1>
-                        <h4 class="h3 mb-n1 text-gray-500">Motívate, mentalizate y sueña divirtiéndote con UCE Ticket's </h4>
-                        <div class="search-container">
-
-                            <form id="formularioBusqueda" class="search-bar">
-                                <p></p>
-                                <input type="text" id="busquedaNombre" class="search-input "  placeholder="Buscar...">
-                                <button class="search-button " id="botonPrincipalBuscar">Buscar evento..</button>
-
-
-                            </form>
+                <p></p>
+                <h1 class="text-gray-800 text-center">Equipo de trabajo</h1>
+                <div class="person-container">
+                    <!-- Primer Persona -->
+                    <div class="person">
+                        <div class="person-image">
+                            <img src="img/mat.png" alt="Persona 1">
+                        </div>
+                        <div class="person-details">
+                            <h2>Mateo Chancusi</h2>
+                            <p>BackEnd</p>
+                            <p>"Per Aspera, Ad Astra. Por el áspero pendiente hacia la cumbre.."</p>
                         </div>
                     </div>
-                </div>
-
-
-                <p></p>
-                <h1 class="text-gray-800 text-center">Académico</h1>
-                <div class="category-container" id="eventosAcademico" data-genero="Académico">
-
-                    <!-- Evento 1 -->
-                    <div class="event-container" href="#" >
-
-
+                    <div class="person">
+                        <div class="person-image">
+                            <img src="img/mar.png" alt="Persona 1">
+                        </div>
+                        <div class="person-details">
+                            <h2>María Taco</h2>
+                            <p>Modelo de Predicción</p>
+                            <p>"Uno de los grandes descubrimientos que un hombre puede hacer, una de sus grandes sorpresas, es encontrar que puede hacer lo que temía que no podía hacer.."
+                                Henry Ford.</p>
+                        </div>
                     </div>
-
-
-                </div>
-                <p></p>
-                <h1 class="text-gray-800 text-center">Cultural</h1>
-                <div class="category-container" id="eventosCultural" data-genero="Cultural">
-
-                    <!-- Evento 1 -->
-                    <div class="event-container"href="#" >
-
+                    <div class="person">
+                        <div class="person-image">
+                            <img src="img/sta.png" alt="Persona 1">
+                        </div>
+                        <div class="person-details">
+                            <h2>Stalyn Yama</h2>
+                            <p>Modelo de Recomendación</p>
+                            <p>"En última instancia, la libertad más significativa en tu vida proviene de tus compromisos, las cosas en la vida por las que has elegido sacrificarte.." Mark Manson.</p>
+                        </div>
                     </div>
-
-                </div>
-                <p></p>
-                <h1 class="text-gray-800 text-center">Deportivo</h1>
-                <div class="category-container"id="eventosDeportivo" data-genero="Deportivo">
-
-                    <!-- Evento 1 -->
-                    <div class="event-container" href="#" >
-
+                    <div class="person">
+                        <div class="person-image">
+                            <img src="img/die.png" alt="Persona 1">
+                        </div>
+                        <div class="person-details">
+                            <h2>Diego Chicaiza</h2>
+                            <p>FrontEnd</p>
+                            <p>"La primera y mejor victoria es conquistarse así mismo.." Platón.</p>
+                        </div>
                     </div>
 
                 </div>
                 <p></p>
-                <h1 class="text-gray-800 text-center">Networking</h1>
-                <div class="category-container" id="eventosNetworking" data-genero="Networking" >
 
-                    <!-- Evento 1 -->
-                    <div class="event-container"   >
 
+
+                    <div class="text-gray-800 text text-center">
+                        <h2>Contáctanos</h2>
+                        <p>¿Deseas gestionar un evento por nuestro aplicativo web?, no dudes en escribirnos..</p>
+                        <p>Correo: kmchancusi@uce.edu.ec</p>
+                        <p>Telf: 0983481475</p>
                     </div>
 
-                </div>
-                <div class="container">
 
+
+
+            </div>
                     <!-- Categorías en columnas -->
                     <div class="categories-container text-center">
                         <div class="category">
-                            <a href="#eventosAcademico">
+                            <a href="index.html#eventosAcademico">
                                 <img src="img/académico.png" alt="Académico">
                                 <h1 class="h4 mb-3 colortexto-naranja">Académico</h1>
                             </a>
                         </div>
                         <div class="category">
-                            <a href="#eventosCultural">
+                            <a href="index.html#eventosCultural">
                                 <img src="img/cultural.png" alt="Cultural">
                                 <h1 class="h4 mb-3 colortexto-naranja">Cultural</h1>
                             </a>
                         </div>
                         <div class="category">
-                            <a href="#eventosDeportivo">
+                            <a href="index.html#eventosDeportivo">
                                 <img src="img/deporitvo.png" alt="Deportivo">
                                 <h1 class="h4 mb-3 colortexto-naranja">Deportivo</h1>
                             </a>
                         </div>
                         <div class="category">
-                            <a href="#eventosNetworking">
+                            <a href="index.html#eventosNetworking">
                                 <img src="img/networking.png" alt="Networking">
                                 <h1 class="h4 mb-3 colortexto-naranja">Networking</h1>
                             </a>
@@ -564,7 +606,7 @@
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/eventosCliente.js"></script>
+    <script src="js/eventosBusqueda.js"></script>
 
 </body>
 

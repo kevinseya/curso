@@ -2,9 +2,6 @@ package com.cursoJava.curso.servicios;
 
 import com.cursoJava.curso.dao.ticketDao;
 import com.cursoJava.curso.dao.eventoDao;
-import com.cursoJava.curso.exceptions.InsufficientTicketsException;
-import com.cursoJava.curso.exceptions.TicketNotFoundException;
-import com.cursoJava.curso.models.Evento;
 import com.cursoJava.curso.models.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

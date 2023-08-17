@@ -51,7 +51,7 @@ async function registrarEventos(idUsuarioAdmin){
     datosEvento.fecha = document.getElementById('txtFecha').value;
     datosEvento.lugar = document.getElementById('txtLugar').value;
     datosEvento.precioticket = document.getElementById('txtPrecioTicket').value;
-    datosEvento.subgenero = document.getElementById('txtSubGenero').value;
+    datosEvento.etiqueta = document.getElementById('txtEtiqueta').value;
     //tambien iria el id del usuario admin
 
     datosEvento.idusuarioadmin = localStorage.getItem("token").split(";")[1];

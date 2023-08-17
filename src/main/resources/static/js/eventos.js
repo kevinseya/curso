@@ -37,7 +37,7 @@ async function cargarEventos(){
 
 
         let eventoHTML = '<tr><td>'+evento.idevento+'</td><td>'+evento.nombre+'</td><td>'+evento.genero+'</td><td>' +
-            ''+evento.subgenero+'</td><td>'+evento.cantboletosdisponibles+'</td><td>'+evento.precioticket+'</td><td>'+
+            ''+evento.etiqueta+'</td><td>'+evento.cantboletosdisponibles+'</td><td>'+evento.precioticket+'</td><td>'+
             evento.duracion+'</td><td>'+evento.fecha+'</td><td>'+evento.lugar+'</td><td><div>'+botonEliminar+' '+botonActualizar+''+botonGenerarTicket+'</div></td></tr>';
         //se llena el listado con cada usuario cliente creado
         listadoEventosHTML += eventoHTML;
@@ -146,7 +146,7 @@ async function actualizarEvento(idevento){
                 const formularioActualizar = document.getElementById('formularioActualizar')
                 const formularioNombre = document.getElementById('txtNombre1');
                 const formularioGenero = document.getElementById('txtGenero1');
-                const formularioSubgenero = document.getElementById('txtSubGenero1');
+                const formularioEtiqueta = document.getElementById('txtSubGenero1');
                 const formularioCantBoletos = document.getElementById('txtCantBoletosDisponibles1');
                 const formularioPrecioTicket = document.getElementById('txtPrecioTicket1');
                 const formularioDuracion = document.getElementById('txtDuracion1');
@@ -157,7 +157,7 @@ async function actualizarEvento(idevento){
                 formularioNombre.value = datosEvento.nombre;
                 formularioGenero.value = datosEvento.genero;
                 formularioDescripcion.value = datosEvento.descripcion;
-                formularioSubgenero.value = datosEvento.subgenero;
+                formularioEtiqueta.value = datosEvento.etiqueta;
                 formularioCantBoletos.value = datosEvento.cantboletosdisponibles;
                 formularioPrecioTicket.value = datosEvento.precioticket;
                 formularioDuracion.value = datosEvento.duracion;
@@ -170,7 +170,7 @@ async function actualizarEvento(idevento){
                 const nuevoNombre = formularioNombre.value;
                 const nuevoGenero = formularioGenero.value;
                 const nuevaDescripcion = formularioDescripcion.value;
-                const nuevoSubGenero = formularioSubgenero.value;
+                const nuevoEtiqueta = formularioEtiqueta.value;
                 const nuevaCantBoletos = formularioCantBoletos.value;
                 const nuevoPrecioTicket = formularioPrecioTicket.value;
                 const nuevaDuracion = formularioDuracion.value;
@@ -187,7 +187,7 @@ async function actualizarEvento(idevento){
                         fecha : nuevaFecha,
                         lugar : nuevoLugar,
                         precioticket : nuevoPrecioTicket,
-                        subgenero : nuevoSubGenero,
+                        etiqueta : nuevoEtiqueta,
 
                     };
 

@@ -44,7 +44,7 @@ async function enviarNombreEventoPython(nombreEvento) {
             body: JSON.stringify({ nombre_evento: nombreEvento })
 
         });
-        console.log(JSON.stringify({ nombre_evento: nombreEvento }));
+
         if (response.status === 200) {
             console.log('Nombre de evento enviado correctamente a Python.');
             const eventosRecomendados = await response.json();
