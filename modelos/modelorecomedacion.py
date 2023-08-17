@@ -172,9 +172,6 @@ def modeloRecomendacion(nombre_evento):
         data['etiquetas'].append(etiqueta)
 
 
-
-
-
  df_eventos = pd.DataFrame(data)
 
 # Imprime el DataFrame de eventos
@@ -189,7 +186,7 @@ def modeloRecomendacion(nombre_evento):
  etiquetas_split = df_eventos['etiquetas'].apply(lambda x: x.split(','))
  etiquetas_unique = list(set([item for sublist in etiquetas_split for item in sublist]))
 
-# Reemplaza el separador '|' con un espacio en blanco para cada fila en las etiquetas
+# Reemplaza el separador ',' con un espacio en blanco para cada fila en las etiquetas
  df_eventos['etiquetas'] = df_eventos['etiquetas'].apply(lambda x: ' '.join(x.split(',')))
 
 # Crea la matriz TF-IDF a partir de las etiquetas

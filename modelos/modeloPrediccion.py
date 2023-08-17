@@ -1,7 +1,6 @@
 import math
 import numpy as np
 import pandas as pd
-from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.tree import DecisionTreeRegressor
 
 
@@ -70,11 +69,6 @@ def modeloPrediccion(datosPrediccion):
 #Normalizacion de la hora 1:30 a 1.5 o 1 a 1
  data_prueba['duracion'] = data_prueba_sistema['duracion'].apply(transformar_duracion)
 
-
- #se procede a codificar los datos de ingreso, en este caso el genero del evento que se va a predecir
- #ata_prueba_sistema['genero']= data_prueba['genero'].map({'cultural':0, 'academico':1, 'deportivo':2, 'networking':3})
-
-
 #se realiza la predicción con el modelo del arbol que previamente fue entrenado con salida de la predicción de asistentes
  prediccion_asistentes = modelo_arbol_asistentes.predict(data_prueba)
 #aqui se redondea si en el caso de que tuvieramos valores decimales menores a 0.5 se queda con el numero entero
@@ -87,7 +81,7 @@ def modeloPrediccion(datosPrediccion):
  print("prediccion asistentes: ", prediccion_asistentes_redondeada)
  print("prediccion precioTicket: ", prediccion_precio)
 
- #CALCULO DE PRECISION MAE(Error absoluto medio error absoluto promedio entre predicciones y valores reales
+ #CALCULO DE PRECISION MAE(Error absoluto medio error absoluto promedio entre predicciones y valores reales)
  errores_absolutos = [abs(prediccion_asistentes - valor_real) for valor_real in etiquetas_asistentes]
  mae_asistentes = sum(errores_absolutos) / len(errores_absolutos)
  print("MAE Asistentes:", mae_asistentes)
@@ -117,3 +111,4 @@ def transformar_duracion(duracion_str):
   minutos = int(partes[1])
   duracion_decimal = horas+minutos / 60.0
   return duracion_decimal
+
